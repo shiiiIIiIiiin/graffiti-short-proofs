@@ -1,0 +1,16 @@
+cff-version: 1.2.0
+message: "If you use this work, please cite it as below."
+title: "Proofs of Graffiti conjectures 198, 219, 252, 254 and 712"
+authors:
+  - family-names: Kimura
+    given-names: Shin
+version: 1.0.0
+date-released: 2026-10-07
+url: "https://github.com/shiiiIIiIiiin/graffiti-short-proofs"
+repository-code: "https://github.com/shiiiIIiIiiin/graffiti-short-proofs"
+license: MIT
+keywords:
+  - graph theory
+  - spectral graph theory
+  - Graffiti
+  - Written on the Wall
