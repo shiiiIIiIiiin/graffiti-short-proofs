@@ -1,10 +1,13 @@
-# Proofs of Graffiti conjectures 198, 219, 252, 254 and 712
+# Short proofs of Graffiti conjectures 198, 219, 252, 254, 584 and 712
 
 [日本語](README.ja.md)
 
 Shin Kimura (木村心), 2026-10-07
 
-The proofs were written with the help of AI (Claude by Anthropic).
+The proofs were written with the help of AI (Claude Opus 5.5 by Anthropic and GPT-6.1 Sol by OpenAI).
+
+Conjecture 584 was already proved by Xiao-Dong Zhang in 2004. The section on 584 gives a short proof,
+which also covers graphs of girth at least five, with no novelty claim.
 
 The conjectures are from S. Fajtlowicz, *Written on the Wall* (July 2004 version) [WOW].
 Terms are as defined in the glossary of T. L. Brewster, M. J. Dinneen, V. Faber,
@@ -174,12 +177,51 @@ this holds at $`n = 10`$ ($`100 \le 101.8`$), and $`\sqrt{2}(n-1)(n-2) - n^2`$ i
 $`\mathrm{Gr} - kI`$, where $`k`$ is the number of nonedges, has at most one positive eigenvalue
 (Descartes' rule of signs applied to its real-rooted characteristic polynomial). $`\square`$
 
+## Conjecture 584
+
+**Statement.** For a tree $`T`$, $`\lambda_{\max}(L(T)) \le \alpha(T)+2`$,
+where $`\alpha`$ is the independence number (WOW p. 100).
+
+**Prior result.** Xiao-Dong Zhang, *On the two conjectures of Graffiti*,
+Linear Algebra and its Applications **385** (2004), 369–379,
+[doi:10.1016/j.laa.2003.12.014](https://doi.org/10.1016/j.laa.2003.12.014), already proves 584
+in a sharper form (see also Theorem 3.29 of X.-D. Zhang, *The Laplacian eigenvalues of graphs: a survey*,
+[arXiv:1111.2897](https://arxiv.org/abs/1111.2897)).
+
+**Theorem.** More generally, $`\lambda_{\max}(L(G))\le\alpha(G)+2`$ for every finite simple graph
+with no cycles of length three or four, including forests and disconnected graphs.
+
+*Proof.* If there are no edges, the largest Laplacian eigenvalue is zero. Otherwise the
+Anderson–Morley bound gives
+
+$$
+\lambda_{\max}(L(G))\le\max_{uv\in E(G)}(d(u)+d(v)).
+$$
+
+For each edge $`uv`$, the set $`(N(u)\setminus\{v\})\cup(N(v)\setminus\{u\})`$
+has $`d(u)+d(v)-2`$ vertices and is independent: a common vertex or an edge inside either
+neighborhood would give a triangle, and an edge between the two neighborhoods would give
+a four-cycle. Thus $`d(u)+d(v)-2\le\alpha(G)`$, proving the theorem. $`\square`$
+
+*The Anderson–Morley bound, with a self-contained justification.* Let $`B`$ be an oriented
+vertex–edge incidence matrix. Then $`L=BB^{\mathsf T}`$, and its nonzero eigenvalues are those of
+$`B^{\mathsf T}B`$. In the row for $`uv`$, this matrix has diagonal entry two and
+$`d(u)+d(v)-2`$ off-diagonal entries of absolute value one. Every eigenvalue is at most the
+largest absolute row sum: apply the eigenvalue equation at a coordinate of maximal absolute
+value. This gives the stated bound. Reference: W. N. Anderson Jr. and T. D. Morley,
+*Eigenvalues of the Laplacian of a graph*, Linear and Multilinear Algebra **18** (1985),
+141–145, [doi:10.1080/03081088508817681](https://doi.org/10.1080/03081088508817681).
+
+The bound is not attained by trees: among all trees with at most 18 vertices, the smallest value of
+$`\alpha + 2 - \lambda_{\max}`$ is $`4 - (2 + \sqrt{2}) \approx 0.586`$, for the path $`P_4`$ (`check_584.py`).
+
 ## Scripts
 
 | script | purpose | requires |
 |---|---|---|
 | `check_219_small.py` | the computer part of the proof of 219 (exact) | Python 3, networkx, numpy, sympy |
 | `check_198_small.py` | 198 on all connected graphs with 2 to 8 vertices, inside and outside its class (used in the second remark on 198) | Python 3, networkx, numpy |
+| `check_584.py` | 584 on all trees with at most 18 vertices and on random graphs of girth at least five (not part of the proof) | Python 3, networkx, numpy |
 | `sanity_check.py` | numerical check of all five inequalities on all graphs with up to 7 vertices and 4000 random graphs (not part of the proofs) | Python 3, networkx, numpy |
 
 ## License

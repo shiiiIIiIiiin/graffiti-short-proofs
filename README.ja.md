@@ -1,10 +1,13 @@
-# Graffiti 予想 198, 219, 252, 254, 712 の証明
+# Graffiti 予想 198, 219, 252, 254, 584, 712 の短い証明
 
 [English](README.md)
 
 木村心（Shin Kimura）、2026-10-07
 
-証明は AI（Anthropic の Claude）の助けを借りて書いた。
+証明は AI（Anthropic の Claude Opus 5.5 と OpenAI の GPT-6.1 Sol）の助けを借りて書いた。
+
+584 は Xiao-Dong Zhang が 2004 年に証明済みである。予想 584 の節に、内周 5 以上のグラフへの拡張も含む短い証明を載せる。
+584 の解決や、この短い議論の新規性は主張しない。
 
 予想は S. Fajtlowicz『Written on the Wall』（2004 年 7 月版）[WOW] のもの。
 用語は T. L. Brewster, M. J. Dinneen, V. Faber,
@@ -173,12 +176,45 @@ $`n \ge 10`$ のときは $`m \le n^2/4`$ を使うと、$`n^2 \le \sqrt{2}(n-1)
 $`\mathrm{Gr} - kI`$ の正の固有値が高々 1 個であることを厳密な有理数演算で確かめる
 （実根のみをもつ特性多項式にデカルトの符号法則を使う）。$`\square`$
 
+## 予想 584
+
+**主張.** 木 $`T`$ について $`\lambda_{\max}(L(T)) \le \alpha(T) + 2`$。ここで $`\alpha`$ は独立数（WOW p. 100）。
+
+**先行結果.** Xiao-Dong Zhang, *On the two conjectures of Graffiti*,
+Linear Algebra and its Applications **385** (2004), 369–379,
+[doi:10.1016/j.laa.2003.12.014](https://doi.org/10.1016/j.laa.2003.12.014) が、584 をより強い形で証明している
+（X.-D. Zhang, *The Laplacian eigenvalues of graphs: a survey*, [arXiv:1111.2897](https://arxiv.org/abs/1111.2897) の定理 3.29 も参照）。
+
+**定理.** より一般に、長さ 3 と 4 の閉路を持たない（内周 5 以上の）すべての有限単純グラフについて
+$`\lambda_{\max}(L(G)) \le \alpha(G) + 2`$。森や非連結グラフも含む。
+
+*証明.* 辺がなければ、ラプラシアンの最大固有値は 0 である。そうでなければ、Anderson–Morley の不等式より
+
+$$
+\lambda_{\max}(L(G)) \le \max_{uv \in E(G)} (d(u) + d(v)).
+$$
+
+各辺 $`uv`$ について、集合 $`(N(u) \setminus \lbrace v \rbrace) \cup (N(v) \setminus \lbrace u \rbrace)`$ は
+$`d(u) + d(v) - 2`$ 個の頂点からなり、独立である。共通の頂点や、どちらかの近傍の内部の辺があれば三角形ができ、
+2 つの近傍の間の辺があれば長さ 4 の閉路ができるからである。よって $`d(u) + d(v) - 2 \le \alpha(G)`$ であり、定理が従う。$`\square`$
+
+*Anderson–Morley の不等式の自己完結した説明.* $`B`$ を向きをつけた頂点–辺接続行列とすると $`L = B B^{\mathsf{T}}`$ であり、
+その 0 でない固有値は $`B^{\mathsf{T}} B`$ の 0 でない固有値と一致する。$`B^{\mathsf{T}} B`$ の辺 $`uv`$ に対応する行は、
+対角成分が 2 で、絶対値 1 の非対角成分が $`d(u) + d(v) - 2`$ 個ある。どの固有値も、行の成分の絶対値の和の最大値以下である
+（固有ベクトルの成分の絶対値が最大になる座標で、固有値の式を見ればよい）。これで不等式が得られる。
+文献：W. N. Anderson Jr. and T. D. Morley, *Eigenvalues of the Laplacian of a graph*,
+Linear and Multilinear Algebra **18** (1985), 141–145, [doi:10.1080/03081088508817681](https://doi.org/10.1080/03081088508817681)。
+
+木では等号は成り立たない。18 頂点以下のすべての木で $`\alpha + 2 - \lambda_{\max}`$ の最小値は
+$`4 - (2 + \sqrt{2}) \approx 0.586`$ で、道 $`P_4`$ のときである（`check_584.py`）。
+
 ## スクリプト
 
 | スクリプト | 目的 | 必要なもの |
 |---|---|---|
 | `check_219_small.py` | 219 の証明の計算機部分（厳密計算） | Python 3、networkx、numpy、sympy |
 | `check_198_small.py` | 2〜8 頂点のすべての連結グラフで 198 を調べる（対象内・対象外とも。198 の 2 つ目の注で使う） | Python 3、networkx、numpy |
+| `check_584.py` | 18 頂点以下のすべての木と、内周 5 以上のランダムグラフで 584 を確かめる（証明の一部ではない） | Python 3、networkx、numpy |
 | `sanity_check.py` | 7 頂点以下のすべてのグラフとランダムグラフ 4000 個で 5 つの不等式を数値的に確かめる（証明の一部ではない） | Python 3、networkx、numpy |
 
 ## ライセンス
