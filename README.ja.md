@@ -4,6 +4,8 @@
 
 木村心（Shin Kimura）、2026-10-07
 
+証明は AI（Anthropic の Claude）の助けを借りて書いた。
+
 予想は S. Fajtlowicz『Written on the Wall』（2004 年 7 月版）[WOW] のもの。
 用語は T. L. Brewster, M. J. Dinneen, V. Faber,
 "A computational attack on the conjectures of Graffiti: New counterexamples and proofs",

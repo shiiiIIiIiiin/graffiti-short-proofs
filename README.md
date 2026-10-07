@@ -4,6 +4,8 @@
 
 Shin Kimura (木村心), 2026-10-07
 
+The proofs were written with the help of AI (Claude by Anthropic).
+
 The conjectures are from S. Fajtlowicz, *Written on the Wall* (July 2004 version) [WOW].
 Terms are as defined in the glossary of T. L. Brewster, M. J. Dinneen, V. Faber,
 *A computational attack on the conjectures of Graffiti: New counterexamples and proofs*,
